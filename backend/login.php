@@ -1,5 +1,6 @@
 <?php
 include 'config.php';
+session_start();
 header("Access-Control-Allow-Origin: *");
 header('Access-Control-Allow-Credentials: true');
 header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE");
@@ -13,7 +14,7 @@ if ($requestMethod == "POST") {
     $email = trim($data['email']);
     $password = $data['password'];
     $sql = "SELECT * FROM `register` WHERE `email` = '" . $email . "' AND  `password` = '" . $password . "'";
-    //print_r($sql);
+    // print_r($sql);
     $result = $link->query($sql);
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
